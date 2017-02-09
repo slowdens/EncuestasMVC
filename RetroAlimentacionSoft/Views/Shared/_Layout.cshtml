@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Encuestas</title>
+    
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/login")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/logins/css")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="contenedor">
+        <div class="contenedormenu">
+            <img  id="imglogo" src="~/imagenes/Logotipo.png"/>
+            @Html.Partial("_MenuDeslis")
+           
+        </div>
+        <div class="trabajoarea">
+            <div class="deslong" >
+                <div class="row">
+                    <div class="col-md-offset-9 col-md-1 " >
+                        <label> Nomina :</label>                        
+                    </div>
+                    <div class="col-md-1">
+                        <label>@ViewBag.ssesion</label>
+                    </div>
+                    <div class="col-md-1" >
+                       @Html.ActionLink("Salir", "Salir","Home") 
+                    </div>
+                </div>                
+            </div>
+            <div class="cajontrabajo">
+                @RenderBody()
+            </div>            
+            <div class="footerCajita">
+                <div class="colorFooter">
+                    Lorem ipsum dolor sit amet
+                </div>
+            </div>
+        </div>        
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var alto = null;
+            alto = $(window).height();
+            console.log("El alto de la pagina es " + alto)
+            $(".contenedor").css("height", alto + "px");
+            $(".footerCajita").css("top", (alto - 38) + "px");
+                
+        });
+    </script>
+ 
+</body>
+
+</html>

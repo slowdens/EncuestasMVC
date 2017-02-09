@@ -1,0 +1,117 @@
+.contenedor{
+  
+     margin-right: -30px;
+     margin-left: -15px;
+     margin-bottom:-30px;
+    /*margin-top:0px;*/
+	display: flex;
+	width: 100%;
+
+}
+
+.contenedormenu{
+
+    
+	background-color: #233646;
+	width: 200px;
+    /*height:100%;*/
+}
+.trabajoarea{
+   
+    
+
+	width:100%;
+	height: 100%;
+}
+.cajalogin{
+	position: absolute;;	
+	padding: 10px;	
+	left: 43%;
+	top: 228px;
+}	
+
+.footerCajita{
+	position: absolute;	
+	width: 88.7%
+}
+.colorFooter{
+
+	background: #233646;
+	width: 100%;
+	height: 38px;	
+	vertical-align: middle;	
+	color: #FFFFFF;
+}
+#btnlogin{
+	color:#FFFFFF;
+	background: #5082d6;
+	width: 100%;
+	height: 30px;
+	vertical-align: text-top;
+}
+#btnlogin:hover{
+	color:#FFFFFF;
+	vertical-align: text-top;
+	background: #5375d6;
+	width: 100%;
+	height: 30px;
+}
+#imglogo{
+	margin: 10px;
+	width: 70%;
+	height: 100px;
+}
+.cajontrabajo{    
+    height:100%;
+    width:100%;
+}
+
+#txtpass ,#txtUsuario {
+	background:#a9a9a9;
+	/*background: red;*/
+	color: #FFFFFF;
+}
+.pinter
+{	
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #233646;
+    border: 1px solid #ddd;    
+}
+
+.pinter:hover
+{
+	width: 100%;
+    position: relative;
+    border-radius: 10px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #086A87   ;
+    border: 1px solid #ddd;
+}
+
+.reto {
+
+    color: #FFFFFF;
+    text-decoration: none;
+    text-align:center;
+}
+.reto:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.pintura{
+	background: red;
+}
+.deslong{
+    margin-right: 0px;
+    margin-left: 0px;
+    /*background:red;*/
+    width:100%;
+}

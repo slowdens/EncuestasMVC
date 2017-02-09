@@ -1,0 +1,112 @@
+﻿@using RetroAlimentacionSoft.Models.utilidades
+@model IEnumerable<NominaRol>
+@{
+    ViewBag.Title = "ListadoUsuarioRol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-4">
+        <h2>Listado de usuarios rol</h2>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="example" class="display" width="100%" ellspacing="0">
+            <thead>
+                <tr>
+                    <th>Nómina</th>
+                    <th>Rol</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Nómina</th>
+                    <th>Rol</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach(var s in Model)
+                {
+                    <tr id="nomi-@s.Nomina">
+                        <td>@Html.DisplayFor(model => s.Nomina)</td>
+                        <td>@Html.DisplayFor(model => s.Rol)</td>
+                        <td><button type="button" class="btn btn-danger" onclick="datos('@s.Nomina')">Eliminar</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+        @Html.ActionLink("Regresar", "Asignar", "Permiso", null, new { @class = "btn btn-warning" })
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        //inicio del documento
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        function datos(nomina)
+        {
+            var tabla = $('#example').DataTable();
+            var row = tabla.row('#nomi-' + nomina).data();
+            console.log("pocsion " + row[0]);
+            console.log("pocsion dos " + row[1]);
+            var res = confirm("Desea eliminar el rol a la nómina " + row[0]);
+            if (res === true) {
+                /*Esto funciona para que podamos obtener los datos en una devolvida desde el ajax*/
+                /*Mandamos llamar  a regreso */
+                var regreso;
+                aja_eliminar(nomina, function (regreso) {
+                    if (regreso == "Exito") {
+                        tabla.row('#nomi-' + nomina).remove().draw(false);
+                    }
+
+                });
+            }
+            //alert(nomina);
+        }
+
+        function aja_eliminar(i, my_callback) {
+            var regreso = "";
+            $.ajax({
+                url: '/Permiso/EliminarNomina',
+                contentType: 'application/html; charset=utf-8',
+                type: 'GET',
+                data: { nomina: i },
+                dataType: 'html'
+
+            })
+        .success(function (result) {
+            //$('#trabajocontigo').html(result);
+            console.log(result);
+            if ($.trim(result) === "Exito") {
+                regreso = "Exito";
+            }
+            else {
+                regreso = "No es exito";
+            }
+            //Con esta funcion retornamos los dato
+            my_callback(regreso);
+        })
+            .error(function (xhr, status) {
+                alert(status);
+            })
+
+
+            return regreso;
+        }
+
+    </script>
+}

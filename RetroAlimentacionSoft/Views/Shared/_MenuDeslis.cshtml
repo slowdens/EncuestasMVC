@@ -1,0 +1,14 @@
+﻿
+@{
+    List<RetroAlimentacionSoft.Models.utilidades.MenusSelecto> menuList = ViewBag.Menu;
+}
+
+
+<div class="list-group">
+    @foreach(var menu in menuList)
+    {
+       
+       <a href="@menu.Link" class="pinter reto"> @menu.Nombre</a>
+       
+    }
+</div>

@@ -1,0 +1,73 @@
+﻿@model RetroAlimentacionSoft.Models.utilidades.VistaRol
+@{
+    
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Hola", "Rol", FormMethod.Get, new  {@id="frn" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    <div class="row">
+
+        <div class="col-md-1">
+            <label>Rol</label>
+        </div>
+        <div class="col-md-2">
+          @Html.DropDownListFor(m => m.rol, new SelectList(Model.rol, "id_rol", "Nombre"), "Selecciona")
+          @Html.ValidationMessageFor(m => m.rol, "", new { @class = "text-danger" })            
+        </div>
+        @*<div class="col-md-1">
+            <input type="submit" value="enivar" class="btn btn-primary"  />
+        </div>*@
+    </div>
+    <div  class="row">
+        <div class="col-md-12" id="trabajocontigo">
+
+        </div>
+
+    </div>
+       
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var rol;
+        $("#rol").change(function () {
+            if ($('#rol').val() == '') {
+                alert("Esta vacio")
+            }
+            rol =$('#rol').val();
+            jax_GetMenu(rol);
+        });
+    });
+
+    function jax_GetMenu(rols)
+    {
+        $.ajax({
+            url: '/Rol/GetMenu',
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            data: {rol: rols },
+            dataType: 'html'
+
+        })
+        .success(function (result) {
+                $('#trabajocontigo').html(result);
+        })
+            .error(function (xhr, status) {
+                alert(status);
+        })
+    }
+
+</script>
+
+
+}
+

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "UsuarioAgregar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(ViewBag.resultado=="Agregado")
+{
+    <div class="row">
+        <div class="col-md-12">
+            Se agrego correctamente la nomina
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+           La nómina ya tiene un rol asignado
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-1">
+        @Html.ActionLink("Regresar", "direccion", "Permiso", null, new { @class = "btn btn-warning" })
+    </div>
+</div>

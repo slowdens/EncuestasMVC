@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RetroAlimentacionSoft.Models.BaseDatosContext">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAgAAAAAEIACAAAAAQAAEAEAQAAAAAAEAAEAAAAAI=</HashCode>
+      <FileName>Models\BaseDatosContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

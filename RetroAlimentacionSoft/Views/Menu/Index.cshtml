@@ -1,0 +1,169 @@
+﻿@model IEnumerable<RetroAlimentacionSoft.Models.cat_menu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+   
+<div id="msjerror" class="alert alert-danger">
+    Hola esto es una prueba
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="example" class="display" width="100%" ellspacing="0">
+            <thead>
+                <tr>
+                    <th>Menú</th>
+                    <th>Link</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Menú</th>
+                    <th>Link</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach(var s in Model)
+                {
+                    <tr id="ids-@s.id_menu">
+                        <td>@Html.DisplayFor(model => s.Nombre)</td>
+                        <td>@Html.DisplayFor(model => s.Link)</td>
+                        <td><button type="button" class="btn btn-danger" onclick="datos(@s.id_menu)">Eliminar</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>
+
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //msjerror
+            $("#msjerror").hide();
+            $('#example').DataTable();
+        });
+
+        function mostrarError(errore)
+        {
+            errore = htmlDecode(errore);
+            $("#msjerror").text(errore);
+            $("#msjerror").show();
+        }
+
+        function ocultarError()
+        {
+            $("#msjerror").hide();
+        }
+
+        function htmlDecode(value) {
+            return $('<div/>').html(value).text();
+        }
+
+        //llamamos desde el boton
+        function datos(i)
+        {
+            var regreso;
+            alert(i);
+            ajax_eliminar(i, function (regreso) {
+                if(regreso=="Exito")
+                {
+                    alert("Se elimino el registro");
+                }
+                else {
+                    if (regreso.includes("Error")) {                        
+                        
+
+                        mostrarError(regreso);
+                    }
+                    else {
+                        regreso = "No es exito";
+                        mostrarError("No hubo exito");
+                    }
+                }
+            })
+
+        }
+
+        function ajax_eliminar(ids,my_callback)
+        {
+            var regreso;
+
+            $.ajax({
+                url: '/Menu/EliminarMenu',
+                contentType: 'application/html; charset=utf-8',
+                type: 'GET',
+                data: { id: ids },
+                dataType: 'html'
+
+            })
+            .success(function (result) {
+              
+               regreso = $.trim(result);          
+               my_callback(regreso);
+            })
+            .error(function (xhr, status) {
+                alert(status);
+            })
+
+
+            return regreso;
+
+        }
+
+    </script>
+
+}
+
+
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Padre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Link)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Padre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_menu }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_menu }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_menu })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+
+

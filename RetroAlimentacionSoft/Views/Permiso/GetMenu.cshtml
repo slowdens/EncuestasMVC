@@ -1,0 +1,50 @@
+﻿@using RetroAlimentacionSoft.Models.utilidades
+@model IEnumerable<MenuControl>
+
+@{
+    int cantidad = Model.Count();
+    int vueltas = 1;
+    int intCantidad = 0;
+    bool bandera = false;
+    string strDato = "";
+    }
+
+    @foreach (MenuControl p in Model)
+    {
+        bandera = true;
+
+        if (intCantidad == 0)
+        {
+            strDato += "<div class='row'><div class='col-md-4'> <input type='checkbox' id='chkpermiso" + p.id_menu + "' value=" + p.id_menu + "  /> " + p.Nombre + "   </div>";
+        }
+        if (intCantidad == 1)
+        {
+            strDato += "<div class='col-md-4'> <input type='checkbox' id='chkpermiso" + p.id_menu + "' value=" + p.id_menu + "    />" + p.Nombre + "  </div>";
+        }
+        if (intCantidad == 2)
+        {
+            strDato += "<div class='col-md-4'> <input type='checkbox' id='chkpermiso" + p.id_menu + "' value=" + p.id_menu + "    /> " + p.Nombre + "  </div></div>";
+            intCantidad = -1;
+        }
+        if (vueltas == cantidad)
+        {
+            strDato +=  " </div>";
+        }
+        intCantidad++;
+        vueltas++;
+    }
+   @*imprimos el razor*@
+    
+    @Html.Raw(strDato)
+   @if (bandera==true)
+   {
+        <div class="row">
+            <div class="col-md-offset-5 col-md-1">
+                <input type="button" value="Agregar" onclick="mostrar();" class="btn btn-success" />
+            </div>
+        </div>
+   }
+
+    
+
+

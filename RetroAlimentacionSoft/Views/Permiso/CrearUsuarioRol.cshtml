@@ -1,0 +1,45 @@
+﻿@model RetroAlimentacionSoft.Models.utilidades.ViewmodelNominaRol
+@{
+    ViewBag.Title = "CrearUsuarioRol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agregar usuario rol</h2>
+
+    @using (Html.BeginForm("UsuarioAgregar", "Permiso", FormMethod.Post, new { @id = "frm" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-2">
+                <label>Nomina</label>
+            </div>
+            <div class="col-md-2">
+                @*@Html.TextBox("Nomina", null, new { @class="form-control"})*@
+                @Html.TextBoxFor(m => m.Nomina, null, new { @class="form-control"})
+                @Html.ValidationMessageFor(m => m.Nomina, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Rol</label>
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownListFor(m => m.rol, new SelectList(Model.rol, "id_rol", "Nombre"), "Selecciona", new { @class="form-control"})
+                @Html.ValidationMessageFor(m => m.rol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <input type="submit" value="enivar" class="btn btn-primary" />
+            </div>
+            <div class="col-md-1">
+                @Html.ActionLink("Regresar", "Asignar", "Permiso", null, new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    }
+    
+
+
+
