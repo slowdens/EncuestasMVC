@@ -525,6 +525,7 @@
     <Content Include="Views\Menu\EliminarMenu.cshtml" />
     <Content Include="Views\Preguntas\Index.cshtml" />
     <Content Include="Views\Preguntas\Agregar.cshtml" />
+    <Content Include="Views\Preguntas\AgregarDatos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

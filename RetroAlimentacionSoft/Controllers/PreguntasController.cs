@@ -65,19 +65,37 @@ namespace RetroAlimentacionSoft.Controllers
         
         public ActionResult AgregarDatos(string rol, string Preguntass)
         {
+            if (System.Web.HttpContext.Current.Session["usuario"] == null)
+            {
+                return RedirectToAction("Index", "Ingresar");
+            }
+            ViewBag.ssesion = System.Web.HttpContext.Current.Session["usuario"].ToString();
+
             //Agregar pregunta
-            //Preguntas per = new Preguntas()
-            //{
-            //    Pregunta = Preguntass
-            //};
-            //db.Preguntas.Add(per);
-            //db.SaveChanges();
+            Preguntas per = new Preguntas()
+            {
+                Pregunta = Preguntass,
+                Sigla = rol
+            };
+            db.Preguntas.Add(per);
+            db.SaveChanges();
 
             //tomamos el id de la pregunta guardada
 
+            var objIds = from pr in db.Preguntas
+                         where pr.Pregunta == Preguntass && pr.Sigla == rol
+                         select new
+                         {
+                           idp=  pr.IdPregunta
+                         };
+            foreach(var od in objIds)
+            {
+                ViewBag.ids = od.idp;
+            }
 
 
-            return View();
+            //mandamos el id de la pregunta generada
+            return View(ViewBag.ids);
         }
 
     }
