@@ -168,6 +168,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PermisoController.cs" />
+    <Compile Include="Controllers\PreguntasController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\ValorCalificacionController.cs" />
     <Compile Include="Controllers\ValorCalificacionsController.cs" />
@@ -201,7 +202,9 @@
     <Compile Include="Models\utilidades\NominaRol.cs" />
     <Compile Include="Models\utilidades\PasoCadenas.cs" />
     <Compile Include="Models\utilidades\UnionMenuRol.cs" />
+    <Compile Include="Models\utilidades\UnionPreguntaSoft.cs" />
     <Compile Include="Models\utilidades\ViewmodelNominaRol.cs" />
+    <Compile Include="Models\utilidades\VistaAplicacion.cs" />
     <Compile Include="Models\utilidades\VistaRol.cs" />
     <Compile Include="Models\ValorCalificacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -520,6 +523,8 @@
     <Content Include="Views\Permiso\ListadoUsuarioRol.cshtml" />
     <Content Include="Views\Permiso\EliminarNomina.cshtml" />
     <Content Include="Views\Menu\EliminarMenu.cshtml" />
+    <Content Include="Views\Preguntas\Index.cshtml" />
+    <Content Include="Views\Preguntas\Agregar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

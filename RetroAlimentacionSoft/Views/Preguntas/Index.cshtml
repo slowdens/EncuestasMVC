@@ -1,0 +1,60 @@
+﻿@using RetroAlimentacionSoft.Models.utilidades
+@model IEnumerable<UnionPreguntaSoft>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-5 col-md-3">
+        <p>Preguntas</p>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table id="example" class="display" width="100%" ellspacing="0">
+            <thead>
+                <tr>
+                    <th>Pregunta</th>
+                    <th>Aplicación</th>                    
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Pregunta</th>
+                    <th>Aplicación</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr id="ids-@s.idPregunta">      
+                       
+                        <td>@Html.DisplayFor(model => s.Pregunta)</td>
+                        <td>@Html.DisplayFor(model => s.Software)</td>                        
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="datos(@s.idPregunta)">Eliminar</button>
+                        </td>
+                        
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    
+    <div class="col-md-1">
+        @Html.ActionLink("Agregar", "Agregar", "Preguntas", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
