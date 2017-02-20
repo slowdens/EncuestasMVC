@@ -5,16 +5,51 @@
 }
 
 <div class="row">
-    <div class="col-md-offset-2">
-
+    <div class="col-md-offset-2 col-md-6">
+        <h2>Respuestas</h2>
     </div>
 </div>
-<h2>Respuestas</h2>
+<div class="row">
+    <div class="col-md-offset-4 col-md-8" >
+        <label>@ViewBag.pregunta</label>  
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @if (ViewBag.ids != null)
+        {
+            <form action="AgregarRespuesta" id="frmDato" method="get">
 
-@if(!string.IsNullOrEmpty(ViewBag.ids)){
-    
-}
-else
-{
-    <p>Información es nulla</p>
-}
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-1">
+                        @Html.Label("Repuesta")
+
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBox("Respuesta", "", new { @class = "form-control" })
+                        <input type="hidden" name="idPregunta" value="@ViewBag.ids" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-1">
+                        @Html.Label("Valor")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBox("Valor", "", new { @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-offset-5 col-md-1">
+                        <input type="submit" value="enivar" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        }
+        else
+        {
+            <p>Información es nulla</p>
+        }
+    </div>
+</div>
+

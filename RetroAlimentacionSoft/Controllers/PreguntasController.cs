@@ -62,8 +62,8 @@ namespace RetroAlimentacionSoft.Controllers
             return View(vm);
         
         }
-        
-        public ActionResult AgregarDatos(string rol, string Preguntass)
+
+        public ActionResult AgregarDatos(string sofware, string Preguntass)
         {
             if (System.Web.HttpContext.Current.Session["usuario"] == null)
             {
@@ -75,7 +75,7 @@ namespace RetroAlimentacionSoft.Controllers
             Preguntas per = new Preguntas()
             {
                 Pregunta = Preguntass,
-                Sigla = rol
+                Sigla = sofware
             };
             db.Preguntas.Add(per);
             db.SaveChanges();
@@ -83,7 +83,7 @@ namespace RetroAlimentacionSoft.Controllers
             //tomamos el id de la pregunta guardada
 
             var objIds = from pr in db.Preguntas
-                         where pr.Pregunta == Preguntass && pr.Sigla == rol
+                         where pr.Pregunta == Preguntass && pr.Sigla == sofware
                          select new
                          {
                            idp=  pr.IdPregunta
@@ -93,9 +93,34 @@ namespace RetroAlimentacionSoft.Controllers
                 ViewBag.ids = od.idp;
             }
 
-
+            ViewBag.pregunta = Preguntass;
             //mandamos el id de la pregunta generada
             return View(ViewBag.ids);
+        }
+
+        public ActionResult AgregarRespuesta(string respuesta, int idPregunta,float valor)
+        {
+            Respuesta res = new Respuesta();
+
+            res.Respuesta1 = respuesta;
+            res.Valor = valor;
+            res.IdPregunta = idPregunta;
+
+            db.Respuesta.Add(res);
+            db.SaveChanges();
+            
+            //tomamos el valor del id registrado
+            var valorActual = from i in db.Respuesta
+                              where i.Respuesta1 == respuesta && i.Valor == valor && i.IdPregunta == idPregunta
+                              select new
+                              {
+                                  Ids = i.IdRespuesta
+                              };
+            foreach(var vals in valorActual ){
+                ViewBag.ids = vals.Ids;
+            };
+                        
+            return View();
         }
 
     }
